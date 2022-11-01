@@ -5,7 +5,9 @@ import math
 import matplotlib.pyplot as plt
 import random
 from utils.funcs import *
+from collections import namedtuple
 
+ParkingLot = namedtuple("ParkingLot", ["p0", "p1", "p2", "p3"]) 
 
 def print_help():
     print("Please provide the parking lot type you want to select...")
@@ -65,16 +67,16 @@ def show_select_park_lots(ix, iy, plot_type):
     # 清除之前的绘制
     plt.clf()
     plt.scatter(xy.x, xy.y, s=POINT_SIZE , cmap=plt.cm.Spectral, alpha=0.8)
-    plt.xlim((-12.0, 12.0))
-    plt.ylim((-12.0, 12.0))    
-    plt.xticks(range(-12, 12))
-    plt.yticks(range(-12, 12))
+    plt.xlim((-20.0, 20.0))
+    plt.ylim((-20.0, 20.0))    
+    plt.xticks(range(-20, 20))
+    plt.yticks(range(-20, 20))
     plt.show()
 
 def select_parking_lot(plot_type):
     fig = plt.figure()
-    plt.xlim((-12.0, 12.0))
-    plt.ylim((-12.0, 12.0))
+    plt.xlim((-20.0, 20.0))
+    plt.ylim((-20.0, 20.0))
     
     def on_click_listener(event):
         ix, iy = event.xdata, event.ydata
