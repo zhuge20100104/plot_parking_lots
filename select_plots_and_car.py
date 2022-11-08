@@ -106,17 +106,17 @@ def show_select_park_lots(ix, iy, plot_type):
 
         tan_x = ix + 6/2
         tan_y = iy
-        p0 = (ix, iy)
-        p1 = (ix, iy_new)
-        p2 = (ix_new, iy_new)
-        p3 = (ix_new, iy)
+        p0 =   (ix_new, iy)
+        p1 =   (ix_new, iy_new)
+        p2 =   (ix, iy_new) 
+        p3 =   (ix, iy)
 
         for i in range(1, PARKING_LOT_COUNTS):
             parking_lots_empty = list()
-            p0_1 =  (ix + i*(6 +0.2), iy)
-            p1_1 = (ix +  i*(6 +0.2), iy_new)
-            p2_1 = (ix +  i*(6+ 0.2)+6, iy_new)
-            p3_1 = (ix +  i*(6+ 0.2)+6, iy)
+            p0_1 = (ix +  i*(6+ 0.2)+6, iy)
+            p1_1 = (ix +  i*(6+ 0.2)+6, iy_new)
+            p2_1 = (ix +  i*(6 +0.2), iy_new) 
+            p3_1 = (ix + i*(6 +0.2), iy)
             parking_lots_empty.append(p0_1)
             parking_lots_empty.append(p1_1)
             parking_lots_empty.append(p2_1)
@@ -135,18 +135,18 @@ def show_select_park_lots(ix, iy, plot_type):
 
         tan_x = ix + 2.4/2
         tan_y = iy
-        p0 = (ix, iy)
-        p1 = (ix, iy_new)
-        p2 = (ix_new, iy_new)
-        p3 = (ix_new, iy)
+        p0 =  (ix_new, iy)
+        p1 =  (ix_new, iy_new)
+        p2 =  (ix, iy_new)
+        p3 =  (ix, iy)
 
 
         for i in range(1, PARKING_LOT_COUNTS):
             parking_lots_empty = list()
-            p0_1 =  (ix + i*(2.4 +0.2), iy)
-            p1_1 = (ix +  i*(2.4 +0.2), iy_new)
-            p2_1 = (ix +  i*(2.4+ 0.2)+2.4, iy_new)
-            p3_1 = (ix +  i*(2.4+ 0.2)+2.4, iy)
+            p0_1 =  (ix +  i*(2.4+ 0.2)+2.4, iy)
+            p1_1 = (ix +  i*(2.4+ 0.2)+2.4, iy_new)
+            p2_1 = (ix +  i*(2.4 +0.2), iy_new) 
+            p3_1 =  (ix + i*(2.4 +0.2), iy)    
      
             parking_lots_empty.append(p0_1)
             parking_lots_empty.append(p1_1)
@@ -175,10 +175,10 @@ def show_select_park_lots(ix, iy, plot_type):
         
         for i in range(1, PARKING_LOT_COUNTS):
             parking_lots_empty = list()
-            p0_1 =  (ix + i*(4 +0.2/math.sin(angle)), iy)
-            p1_1 = (ix + i*(4 +0.2/math.sin(angle)) + 8*math.cos(angle), iy +  8* math.sin(angle))
-            p2_1 = (ix + i*(4 +0.2/math.sin(angle)) +  8*math.cos(angle) + 4,  iy +  8* math.sin(angle))
-            p3_1 = (ix + i*(4 +0.2/math.sin(angle)) + 4, iy)
+            p0_1 =  (ix + i*(4 +0.2/math.sin(angle)) + 4, iy)
+            p1_1 =  (ix + i*(4 +0.2/math.sin(angle)) +  8*math.cos(angle) + 4,  iy +  8* math.sin(angle))
+            p2_1 = (ix + i*(4 +0.2/math.sin(angle)) + 8*math.cos(angle), iy +  8* math.sin(angle)) 
+            p3_1 =  (ix + i*(4 +0.2/math.sin(angle)), iy) 
             parking_lots_empty.append(p0_1)
             parking_lots_empty.append(p1_1)
             parking_lots_empty.append(p2_1)
@@ -245,17 +245,22 @@ def show_select_uss_data_point(ix, iy,  plot_type):
 
     xy = conv_tuple_list_to_x_y_map(near_far_points_selected)
     print("Current selected uss data points:")
-    print(str(near_far_points_selected))
 
+    # print(str(near_far_points_selected))
+    for p in near_far_points_selected:
+        distance = math.sqrt(p[0] * p[0] + p[1] * p[1])
+        print("  ----- " + str(distance)) 
     plt.scatter(xy.x, xy.y, s=POINT_SIZE, cmap=plt.cm.Spectral, marker='x', alpha=0.8)
 
     update_x_y_axis_and_replot()
 
 
 def select_parking_lot(plot_type):
+  
     fig = plt.figure(figsize=(12.8, 7.68))
     plt.xlim((-20.0, 20.0))
     plt.ylim((-20.0, 20.0))
+    plt.scatter(0.0, 0.0 , s=POINT_SIZE, cmap=plt.cm.Spectral, marker='x', alpha=0.8)
     
     def on_select_parking_lot(event):
         ix, iy = event.xdata, event.ydata
