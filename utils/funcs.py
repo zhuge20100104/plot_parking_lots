@@ -41,3 +41,15 @@ def calculate_theta_and_opposite_theta(tan_x, tan_y):
     else:
         opposite_theta = theta  - math.pi
     return Thetas(theta, opposite_theta)
+
+def parking_lot_to_str(parking_lots):
+    res_str = '''"p0":{"x": %s,"y": %s },"p1": {"x": %s,"y": %s },"p2":{"x": %s,"y": %s},"p3": {"x": %s,"y": %s}'''
+    return res_str % (parking_lots[0][0], parking_lots[0][1], parking_lots[1][0], parking_lots[1][1], \
+        parking_lots[2][0], parking_lots[2][1], parking_lots[3][0], parking_lots[3][1])
+
+
+if __name__ == '__main__':
+    parking_lots_ = [(7.983870967741932, 3.303571428571427), (7.983870967741932, 8.703571428571427), (5.583870967741932, 8.703571428571427), (5.583870967741932, 3.303571428571427)]
+    res = parking_lot_to_str(parking_lots_)  
+    print(parking_lots_)
+    print(res)

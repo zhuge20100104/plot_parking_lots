@@ -167,10 +167,10 @@ def show_select_park_lots(ix, iy, plot_type):
         tan_x =  ix + 4/2
         tan_y =  iy
 
-        p0 = (ix, iy)
-        p1 = (ix + 8*math.cos(angle), iy +  8* math.sin(angle))
-        p2 = (ix + 8*math.cos(angle) + 4, iy +  8* math.sin(angle))
-        p3 = (ix+ 4, iy)
+        p0 = (ix+ 4, iy) 
+        p1 = (ix + 8*math.cos(angle) + 4, iy +  8* math.sin(angle))
+        p2 = (ix + 8*math.cos(angle), iy +  8* math.sin(angle))
+        p3 = (ix, iy)
 
         
         for i in range(1, PARKING_LOT_COUNTS):
@@ -196,6 +196,8 @@ def show_select_park_lots(ix, iy, plot_type):
     parking_lots_selected.append(p3)
     parking_lots_selected.append(origin_point)
     print("Current selected parking lot: ")
+    parking_lots_selected_str = parking_lot_to_str(parking_lots_selected)
+    print(parking_lots_selected_str)
     print(str(parking_lots_selected))
 
     thetas = calculate_theta_and_opposite_theta(tan_x, tan_y)
@@ -212,6 +214,8 @@ def show_select_park_lots(ix, iy, plot_type):
 
         parking_lots_selected.extend(parking_lots_emp)
         print("Current empty parking lots: ")
+        parking_lots_emp_str = parking_lot_to_str(parking_lots_emp)
+        print(parking_lots_emp_str) 
         print(str(parking_lots_emp))
         print("Current two empty thetas: ")
         print(thetas_emp.theta)
@@ -246,10 +250,7 @@ def show_select_uss_data_point(ix, iy,  plot_type):
     xy = conv_tuple_list_to_x_y_map(near_far_points_selected)
     print("Current selected uss data points:")
 
-    # print(str(near_far_points_selected))
-    for p in near_far_points_selected:
-        distance = math.sqrt(p[0] * p[0] + p[1] * p[1])
-        print("  ----- " + str(distance)) 
+    print(str(near_far_points_selected))
     plt.scatter(xy.x, xy.y, s=POINT_SIZE, cmap=plt.cm.Spectral, marker='x', alpha=0.8)
 
     update_x_y_axis_and_replot()
