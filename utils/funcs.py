@@ -13,7 +13,8 @@ MOD_NAME_MAP = {
     'p': "kPillar",
     'o': "kCone",
     'r': "kPerson",
-    'b': "kBike"
+    'b': "kBike",
+    'u': 'USS_MOD'
 }
 
 def conv_tuple_list_to_x_y_map(ps_points):
@@ -47,9 +48,24 @@ def parking_lot_to_str(parking_lots):
     return res_str % (parking_lots[0][0], parking_lots[0][1], parking_lots[1][0], parking_lots[1][1], \
         parking_lots[2][0], parking_lots[2][1], parking_lots[3][0], parking_lots[3][1])
 
+def point_to_str(pt):
+    res_str = '''{"x": %s, "y": %s}''' % (pt[0], pt[1])
+    return res_str
+
+def point_list_to_str(pts):
+    res_str = ""
+    for pt in pts:
+        pt_str = point_to_str(pt)
+        res_str += pt_str
+        res_str += ','
+    res_str = res_str[:-1]
+    return res_str
 
 if __name__ == '__main__':
-    parking_lots_ = [(7.983870967741932, 3.303571428571427), (7.983870967741932, 8.703571428571427), (5.583870967741932, 8.703571428571427), (5.583870967741932, 3.303571428571427)]
-    res = parking_lot_to_str(parking_lots_)  
-    print(parking_lots_)
-    print(res)
+    # parking_lots_ = [(7.983870967741932, 3.303571428571427), (7.983870967741932, 8.703571428571427), (5.583870967741932, 8.703571428571427), (5.583870967741932, 3.303571428571427)]
+    # res = parking_lot_to_str(parking_lots_)  
+    # print(parking_lots_)
+    # print(res)
+    pt = (1.222, 2.333)
+    res_str = point_to_str(pt)
+    print(res_str)

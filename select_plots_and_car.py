@@ -87,11 +87,76 @@ def  show_common_mod(ix, iy, width, height, mod_key) :
     mod_type = MOD_NAME_MAP[mod_key]
     print("Current "+ mod_type + " MOD: ")
     print(str(common_mod))
+    pts_str = point_list_to_str(common_mod)
+    print(pts_str)
 
     xy = conv_tuple_list_to_x_y_map(common_mod)
     plt.scatter(xy.x, xy.y, s=POINT_SIZE , cmap=plt.cm.Spectral, alpha=0.8)
     update_x_y_axis_and_replot()
 
+
+def  show_line_mod(ix, iy, line_len, mod_key) :
+    ix_new = ix+line_len
+    p0 = (ix, iy)
+    p1 = (ix_new, iy)
+
+    common_mod = list()
+
+    common_mod.append(p0)
+    common_mod.append(p1)
+    mod_type = MOD_NAME_MAP[mod_key]
+    print("Current "+ mod_type + " MOD: ")
+    print(str(common_mod))
+    pts_str = point_list_to_str(common_mod)
+    print(pts_str)
+
+    xy = conv_tuple_list_to_x_y_map(common_mod)
+    plt.scatter(xy.x, xy.y, s=POINT_SIZE , cmap=plt.cm.Spectral, alpha=0.8)
+    update_x_y_axis_and_replot()
+
+def show_triangle_mod(ix, iy, mod_key):
+    
+    p0 = (ix, iy)
+    p1 = (ix + 1.0, iy-0.2)
+    p2 = (ix, iy-1.0)    
+    common_mod = list()
+
+    common_mod.append(p0)
+    common_mod.append(p1)
+    common_mod.append(p2)
+    mod_type = MOD_NAME_MAP[mod_key]
+    print("Current "+ mod_type + " MOD: ")
+    print(str(common_mod))
+    pts_str = point_list_to_str(common_mod)
+    print(pts_str)
+
+    xy = conv_tuple_list_to_x_y_map(common_mod)
+    plt.scatter(xy.x, xy.y, s=POINT_SIZE , cmap=plt.cm.Spectral, alpha=0.8)
+    update_x_y_axis_and_replot()
+
+def show_pentagon_mod(ix, iy, mod_key):
+    
+    p0 = (ix, iy)
+    p1 = (ix-0.8, iy-0.6)
+    p2 = (ix-0.4, iy-1.0) 
+    p3 = (ix+0.4, iy-1.0)
+    p4 = (ix+0.6, iy-0.5)
+    common_mod = list()
+
+    common_mod.append(p0)
+    common_mod.append(p1)
+    common_mod.append(p2)
+    common_mod.append(p3)
+    common_mod.append(p4)
+    mod_type = MOD_NAME_MAP[mod_key]
+    print("Current "+ mod_type + " MOD: ")
+    print(str(common_mod))
+    pts_str = point_list_to_str(common_mod)
+    print(pts_str)
+
+    xy = conv_tuple_list_to_x_y_map(common_mod)
+    plt.scatter(xy.x, xy.y, s=POINT_SIZE , cmap=plt.cm.Spectral, alpha=0.8)
+    update_x_y_axis_and_replot()
 
 def show_select_park_lots(ix, iy, plot_type):
     origin_point = (0, 0)
@@ -251,6 +316,10 @@ def show_select_uss_data_point(ix, iy,  plot_type):
     print("Current selected uss data points:")
 
     print(str(near_far_points_selected))
+    for pt in near_far_points_selected:
+        pt_str = point_to_str(pt)
+        print(pt_str)
+
     plt.scatter(xy.x, xy.y, s=POINT_SIZE, cmap=plt.cm.Spectral, marker='x', alpha=0.8)
 
     update_x_y_axis_and_replot()
@@ -291,6 +360,23 @@ def select_parking_lot(plot_type):
         elif event.key == 'b':
             ix, iy = event.xdata, event.ydata
             show_common_mod(ix, iy, 1.54, 0.76, 'b')  
+        elif event.key == '2':
+            # start to select USS line MOD
+            ix, iy = event.xdata, event.ydata
+            show_line_mod(ix, iy, 1.0, 'u')
+        elif event.key == '3':
+            ix, iy = event.xdata, event.ydata
+            # Start to select USS triangle MOD
+            show_triangle_mod(ix, iy, 'u')
+        elif event.key == '4':
+            ix, iy = event.xdata, event.ydata
+            # Start to select USS rectangle MOD
+            show_common_mod(ix, iy, 1.0, 1.0, 'u')  
+        elif event.key == '5':
+            ix, iy = event.xdata, event.ydata
+            # Start to select USS pentagon MOD
+            show_pentagon_mod(ix, iy, 'u')
+            
 
 
     fig.canvas.mpl_connect("button_press_event", on_select_parking_lot)
