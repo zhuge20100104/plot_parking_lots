@@ -8,6 +8,10 @@ ParkingLotsAndTheta = namedtuple("ParkingLotsAndTheta", ["parking_lot", "theta"]
 
 POINT_SIZE = 50
 PARKING_LOT_COUNTS = 3
+
+CAR_WIDTH = 2.0
+CAR_LEN = 5.0
+
 MOD_NAME_MAP = {
     'c': "kCar",
     'p': "kPillar",
@@ -27,10 +31,10 @@ def conv_tuple_list_to_x_y_map(ps_points):
     return xys
 
 def update_x_y_axis_and_replot():
-    plt.xlim((-20.0, 20.0))
-    plt.ylim((-20.0, 20.0))    
-    plt.xticks(range(-20, 20))
-    plt.yticks(range(-20, 20))
+    plt.xlim((-12.0, 12.0))
+    plt.ylim((-12.0, 12.0))    
+    plt.xticks(range(-12, 12))
+    plt.yticks(range(-12, 12))
     plt.show()
 
 

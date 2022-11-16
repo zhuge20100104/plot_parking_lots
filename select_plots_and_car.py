@@ -328,12 +328,15 @@ def show_select_uss_data_point(ix, iy,  plot_type):
 def select_parking_lot(plot_type):
   
     fig = plt.figure(figsize=(12.8, 7.68))
-    plt.xlim((-20.0, 20.0))
-    plt.ylim((-20.0, 20.0))
+    plt.xlim((-12.0, 12.0))
+    plt.ylim((-12.0, 12.0))
     plt.scatter(0.0, 0.0 , s=POINT_SIZE, cmap=plt.cm.Spectral, marker='x', alpha=0.8)
     
     def on_select_parking_lot(event):
         ix, iy = event.xdata, event.ydata
+        print("")
+        print("")
+        print("Start to print parking lots ==============================================================")
         show_select_park_lots(ix, iy, plot_type)
         
     def on_select_uss_data_point_or_mod(event):
@@ -376,8 +379,6 @@ def select_parking_lot(plot_type):
             ix, iy = event.xdata, event.ydata
             # Start to select USS pentagon MOD
             show_pentagon_mod(ix, iy, 'u')
-            
-
 
     fig.canvas.mpl_connect("button_press_event", on_select_parking_lot)
     fig.canvas.mpl_connect("key_press_event", on_select_uss_data_point_or_mod)
